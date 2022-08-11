@@ -197,6 +197,42 @@ public class StepDefinitions {
         }
         Assert.assertFalse(user.isValid());
     }
+           
+    /*Registered - Valid*/
+
+    @Given("A {value} of previously registered")
+    public void a_registered_value(Integer value) {
+        user.setRegistered(value);
+    }
+
+    @When("The user submits the form")
+    public void user_submit_details() {
+        user.submit();
+    }
+
+    @Then("The user has a valid registration value")
+    public void the_value_is_valid() {
+        Assert.assertTrue(user.getRegistered() < 1 && user.getRegistered() > 0);
+        Assert.assertTrue(user.isValid());
+    }
+           
+    /*Registered - Invalid*/
+
+    @Given("A {value} of previously registered")
+    public void a_registered_value(Integer value) {
+        user.setRegistered(value);
+    }
+
+    @When("The user submits the form")
+    public void user_submit_details() {
+        user.submit();
+    }
+
+    @Then("The user has a invalid registration value")
+    public void the_value_is_valid() {
+        Assert.assertTrue(user.getRegistered() > 1 || user.getRegistered() < 0);
+        Assert.assertFalse(user.isValid());
+    }
 
 }
 
